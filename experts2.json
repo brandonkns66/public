@@ -1,0 +1,2698 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/brandonkns66/Experts/1.0.0"
+  } ],
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Experts System API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/experts" : {
+      "get" : {
+        "operationId" : "getExperts",
+        "summary" : "Gets a list of all experts",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/expert"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpert",
+        "summary" : "Creates a new expert",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/expert"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertById",
+        "summary" : "Gets an expert by ID",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/expert"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Expert not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertCv",
+        "summary" : "Gets a specific expert's CV",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/cv"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/education" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertEducations",
+        "summary" : "Gets a list of all of an expert's education entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/education"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertEducation",
+        "summary" : "Creates a new education entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/education"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/education/{eduId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/eduId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertEducation",
+        "summary" : "Gets a specific education entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/education"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertEducation",
+        "summary" : "Updates a specific education entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/education"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/teachingexp" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertTeachingExps",
+        "summary" : "Gets a list of all of an expert's teaching experience entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/teachingExp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertTeachingExp",
+        "summary" : "Creates a new teaching experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/teachingExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/teachingexp/{teachingExpId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/teachingExpId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertTeachingExp",
+        "summary" : "Gets a specific teaching experience entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/teachingExp"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertTeachingExp",
+        "summary" : "Updates a specific teaching experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/teachingExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/adminexp" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAdministrativeExps",
+        "summary" : "Gets a list of all of an expert's administrative experience entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/adminExp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertAdministrativeExp",
+        "summary" : "Creates a new administrative experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/adminExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/adminexp/{adminExpId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/adminExpId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAdministrativeExp",
+        "summary" : "Gets a specific administrative experience entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/adminExp"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertAdministrativeExp",
+        "summary" : "Updates a specific administrative experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/adminExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/researchexp" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertResearchExperiences",
+        "summary" : "Gets a list of all of an expert's research experience entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/researchExp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertResearchExperience",
+        "summary" : "Creates a new research experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/researchExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/researchexp/{researchExpId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/researchExpId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertResearchExperience",
+        "summary" : "Gets a single research experience entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/researchExp"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertResearchExperience",
+        "summary" : "Updates a research experience entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/researchExp"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertPublications",
+        "summary" : "Gets an object containing all of an expert's publication entry data",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/publications"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/books" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertBooks",
+        "summary" : "Gets a list of all book publication entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/book"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertBook",
+        "summary" : "Creates a new book publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/book"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/books/{bookId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/bookId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertBook",
+        "summary" : "Gets a single book publication entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertBook",
+        "summary" : "Updates a book publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/book"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/bookchapters/" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertBookChapters",
+        "summary" : "Gets a list of all book chapter publication entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/bookChapter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertBookChapter",
+        "summary" : "Creates a new book chapter publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/bookChapter"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/bookchapters/{bookChapterId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/bookChapterId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertBookChapter",
+        "summary" : "Gets a single book chapter publication entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/bookChapter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertBookChapter",
+        "summary" : "Updates a specific book chapter publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/bookChapter"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/articles" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertJournalArticles",
+        "summary" : "Gets a list of all journal article publication entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/article"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertJournalArticle",
+        "summary" : "Creates a new journal article publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/article"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/articles/{articleId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/articleId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertJournalArticle",
+        "summary" : "Gets a specific journal article publication entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/article"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertJournalArticle",
+        "summary" : "Updates a specific journal article publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/article"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/proceedings" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertProceedings",
+        "summary" : "Gets a list of all conference proceeding publication entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/proceeding"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertProceeding",
+        "summary" : "Creates a new conference proceeding publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/proceeding"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/publications/proceedings/{proceedingId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/proceedingId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertProceeding",
+        "summary" : "Gets a specific conference proceeding publication entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/proceeding"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertProceeding",
+        "summary" : "Updates a specific conference proceeding publication entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/proceeding"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/awards" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAwards",
+        "summary" : "Gets a list of all award entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/award"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertAward",
+        "summary" : "Creates a new award entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/award"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/awards/{awardId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/awardId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAward",
+        "summary" : "Gets a specific award entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/award"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertAward",
+        "summary" : "Updates a specific award entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/award"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/grants" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertGrants",
+        "summary" : "Gets a list of all grant entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/grant"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertGrant",
+        "summary" : "Creates a new grant entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/grant"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/grants/{grantId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/grantId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertGrant",
+        "summary" : "Gets a specific grant/fellowship entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/grant"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertGrant",
+        "summary" : "Updates a specific grant/fellowship entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/grant"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertConferences",
+        "summary" : "Gets an object containing conference/workshop activity",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/grant"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/invitedtalks" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertInvitedTalks",
+        "summary" : "Gets a list of all invited talk entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/invitedTalk"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertInvitedTalk",
+        "summary" : "Creates a new invited talk entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/invitedTalk"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/invitedtalks/{invitedTalkId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/invitedTalkId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertInvitedTalk",
+        "summary" : "Gets a specific invited talk entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/invitedTalk"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertInvitedTalk",
+        "summary" : "Updates a specific invited talk entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/invitedTalk"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/posters" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertPosters",
+        "summary" : "Gets a list of all poster presentation entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/poster"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertPoster",
+        "summary" : "Creates a new poster presentation entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/poster"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/posters/{posterId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/posterId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertPoster",
+        "summary" : "Gets a specific poster presentation entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/poster"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertPoster",
+        "summary" : "Updates a specific poster presentation entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/poster"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/attended" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAttendeds",
+        "summary" : "Gets a list of all conference/workshop attendance entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/attendedConf"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertAttended",
+        "summary" : "Creates a new conference/workshop attendance entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/attendedConf"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/conferences/attended/{attendedId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/attendedId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertAttended",
+        "summary" : "Gets a specific conference/workshop attendance entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/attendedConf"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertAttended",
+        "summary" : "Updates a specific conference/workshop attendance entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/attendedConf"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/memberships" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertMemberships",
+        "summary" : "Gets a list of all membership entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/membership"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertMembership",
+        "summary" : "Creates a new membership entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/membership"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/memberships/{membershipId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/membershipId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertMembership",
+        "summary" : "Gets a specific membership entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/membership"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertMembership",
+        "summary" : "Updates a specific membership entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/membership"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/services" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertServices",
+        "summary" : "Gets a list of all service entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/service"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertService",
+        "summary" : "Creates a new service entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/service"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/services/{serviceId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/serviceId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertService",
+        "summary" : "Gets a specific membership entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/service"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertService",
+        "summary" : "Updates a specific membership entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/service"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/services/{serviceId}/servicesprovided" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/serviceId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertServicesProvided",
+        "summary" : "Gets a list of all services provided to a specific institution",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/serviceProvided"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertServiceProvided",
+        "summary" : "Creates a new service provided entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/serviceProvided"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/services/{serviceId}/servicesprovided/{serviceProvidedId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/serviceId"
+      }, {
+        "$ref" : "#/components/parameters/serviceProvidedId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertServiceProvided",
+        "summary" : "Gets an entry of a specific service provided to a specific institution",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/serviceProvided"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertServiceProvided",
+        "summary" : "Updates a specific service provided entry for a specific institution",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/serviceProvided"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/skills" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertSkills",
+        "summary" : "Gets an object containing the languages and skills of the expert",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/skills"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/skills/languages" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertSkillLangs",
+        "summary" : "Gets a list of all language skill entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/skillLang"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertSkillLang",
+        "summary" : "Creates a new language skill entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/skillLang"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/skills/languages/{skillLangId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/skillLangId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertSkillLang",
+        "summary" : "Gets a specific language skill entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/skillLang"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertSkillLang",
+        "summary" : "Updates a specific language skill entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/skillLang"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/skills/other" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertSkillOthers",
+        "summary" : "Gets a list of all \"other\" skill entries",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/skillOther"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createExpertSkillOther",
+        "summary" : "Creates a new \"other\" skill entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/skillOther"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          }
+        }
+      }
+    },
+    "/experts/{expertId}/cv/skills/other/{skillOtherId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/expertId"
+      }, {
+        "$ref" : "#/components/parameters/skillOtherId"
+      } ],
+      "get" : {
+        "operationId" : "getExpertSkillOther",
+        "summary" : "Gets a specific \"other\" skill entry",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/skillOther"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "operationId" : "updateExpertSkillOther",
+        "summary" : "Updates a specific \"other\" skill entry",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/skillOther"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "404" : {
+            "description" : "Entry not found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "responses" : {
+      "UnauthorizedError" : {
+        "description" : "Access is denied"
+      }
+    },
+    "schemas" : {
+      "expert" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "education" : {
+        "type" : "object",
+        "properties" : {
+          "institution" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "specialization" : {
+            "type" : "string"
+          },
+          "minors" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "honors" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "dissertation" : {
+            "type" : "string"
+          },
+          "thesis" : {
+            "type" : "string"
+          },
+          "advisors" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "teachingExp" : {
+        "type" : "object",
+        "properties" : {
+          "institution" : {
+            "type" : "string"
+          },
+          "position" : {
+            "type" : "string"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "courses" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "adminExp" : {
+        "type" : "object",
+        "properties" : {
+          "institution" : {
+            "type" : "string"
+          },
+          "position" : {
+            "type" : "string"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "researchExp" : {
+        "type" : "object",
+        "properties" : {
+          "role" : {
+            "type" : "string"
+          },
+          "institution" : {
+            "type" : "string"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "authors" : {
+        "type" : "array",
+        "items" : {
+          "type" : "string"
+        }
+      },
+      "book" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "publisher" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }
+      },
+      "bookChapter" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "bookTitle" : {
+            "type" : "string"
+          },
+          "chapterTitle" : {
+            "type" : "string"
+          },
+          "startPage" : {
+            "type" : "integer"
+          },
+          "endPage" : {
+            "type" : "integer"
+          },
+          "publisher" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }
+      },
+      "article" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "articleTitle" : {
+            "type" : "string"
+          },
+          "journalTitle" : {
+            "type" : "string"
+          },
+          "Volume" : {
+            "type" : "string"
+          },
+          "Issue" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "startPage" : {
+            "type" : "integer"
+          },
+          "endPage" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "proceeding" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "pubYear" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "paperTitle" : {
+            "type" : "string"
+          },
+          "confTitle" : {
+            "type" : "string"
+          },
+          "confLocation" : {
+            "type" : "string"
+          },
+          "confDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "startPage" : {
+            "type" : "integer"
+          },
+          "endPage" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "publications" : {
+        "type" : "object",
+        "properties" : {
+          "books" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/book"
+            }
+          },
+          "bookChapters" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/bookChapter"
+            }
+          },
+          "journalArticles" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/article"
+            }
+          },
+          "proceedings" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/proceeding"
+            }
+          }
+        }
+      },
+      "award" : {
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "institution" : {
+            "type" : "string"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "grant" : {
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "institution" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "invitedTalk" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "talkTitle" : {
+            "type" : "string"
+          },
+          "confTitle" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "poster" : {
+        "type" : "object",
+        "properties" : {
+          "authors" : {
+            "$ref" : "#/components/schemas/authors"
+          },
+          "posterTitle" : {
+            "type" : "string"
+          },
+          "confTitle" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "attendedConf" : {
+        "type" : "object",
+        "properties" : {
+          "confTitle" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "membership" : {
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "serviceProvided" : {
+        "type" : "object",
+        "properties" : {
+          "role" : {
+            "type" : "string"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "desc" : {
+            "type" : "string"
+          }
+        }
+      },
+      "service" : {
+        "type" : "object",
+        "properties" : {
+          "institution" : {
+            "type" : "string"
+          },
+          "servicesProvided" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/serviceProvided"
+            }
+          }
+        }
+      },
+      "skillLang" : {
+        "type" : "object",
+        "properties" : {
+          "language" : {
+            "type" : "string"
+          },
+          "proficiency" : {
+            "type" : "string"
+          }
+        }
+      },
+      "skillOther" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "skills" : {
+        "type" : "object",
+        "properties" : {
+          "languages" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/skillLang"
+            }
+          },
+          "other" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/skillOther"
+            }
+          }
+        }
+      },
+      "cv" : {
+        "type" : "object",
+        "properties" : {
+          "education" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/education"
+            }
+          },
+          "teachingExperience" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/teachingExp"
+            }
+          },
+          "administrativeExperience" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/adminExp"
+            }
+          },
+          "researchExperience" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/researchExp"
+            }
+          },
+          "publications" : {
+            "$ref" : "#/components/schemas/publications"
+          },
+          "awards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/award"
+            }
+          },
+          "grants" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/grant"
+            }
+          },
+          "conferences" : {
+            "type" : "object",
+            "properties" : {
+              "invitedTalks" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/invitedTalk"
+                }
+              },
+              "posters" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/poster"
+                }
+              },
+              "attended" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/attendedConf"
+                }
+              }
+            }
+          },
+          "memberships" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/membership"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "expertId" : {
+        "in" : "path",
+        "name" : "expertId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "eduId" : {
+        "in" : "path",
+        "name" : "eduId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "teachingExpId" : {
+        "in" : "path",
+        "name" : "teachingExpId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "adminExpId" : {
+        "in" : "path",
+        "name" : "adminExpId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "researchExpId" : {
+        "in" : "path",
+        "name" : "researchExpId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "bookId" : {
+        "in" : "path",
+        "name" : "bookId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "bookChapterId" : {
+        "in" : "path",
+        "name" : "bookChapterId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "articleId" : {
+        "in" : "path",
+        "name" : "articleId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "proceedingId" : {
+        "in" : "path",
+        "name" : "proceedingId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "awardId" : {
+        "in" : "path",
+        "name" : "awardId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "grantId" : {
+        "in" : "path",
+        "name" : "grantId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "invitedTalkId" : {
+        "in" : "path",
+        "name" : "invitedTalkId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "posterId" : {
+        "in" : "path",
+        "name" : "posterId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "attendedId" : {
+        "in" : "path",
+        "name" : "attendedId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "membershipId" : {
+        "in" : "path",
+        "name" : "membershipId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "serviceId" : {
+        "in" : "path",
+        "name" : "serviceId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "serviceProvidedId" : {
+        "in" : "path",
+        "name" : "serviceProvidedId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "skillLangId" : {
+        "in" : "path",
+        "name" : "skillLangId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      },
+      "skillOtherId" : {
+        "in" : "path",
+        "name" : "skillOtherId",
+        "schema" : {
+          "type" : "integer"
+        },
+        "required" : true
+      }
+    }
+  }
+}
